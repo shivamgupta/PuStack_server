@@ -8,10 +8,12 @@ var coursesSchema = new mongoose.Schema({
   description:{
   	type : String
   },
-  lectures: [String],
+  chapters: [String],
   courseStandard : {
     type : Number
-  }
+  },
+  imageURL: String,
+  author: String
 });
 
 mongoose.model('Course', coursesSchema);
