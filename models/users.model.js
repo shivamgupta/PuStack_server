@@ -24,6 +24,9 @@ var usersSchema = new mongoose.Schema({
     type : Number,
     "default" : 10,
     required : true
+  },
+  school : {
+    type : String
   }
 });
 
