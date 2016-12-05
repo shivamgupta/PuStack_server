@@ -109,11 +109,14 @@ var getAllCourses = function(req, res) {
 ***************************************************/
 
 //helper
-var _stringToBoolean = function(string){
-    switch(string.toLowerCase().trim()){
-        case "Yes": case "True": case "true": case "yes": case "1": return true;
-        case "No": case "False": case "false": case "no": case "0": return false;
-    }
+var _splitArray = function(input) {
+  var output;
+  if (input && input.length > 0) {
+    output = input.split(";");
+  } else {
+    output = [];
+  }
+  return output;
 };
 
 var addOneCourse = function(req, res){
@@ -124,8 +127,10 @@ var addOneCourse = function(req, res){
 	    .create({
 	      name : req.body.name,
 	      description: req.body.description,
-	      lectures: req.body.lectures,
-	      courseStandard: req.body.courseStandard
+	      chapters: _splitArray(req.body.chapters),
+	      courseStandard: req.body.courseStandard,
+        imageURL: req.body.imageURL,
+        author: req.body.author
 	    }, function(err, course) {
 		      if (err) {
             //console.log("Error creating course");
@@ -221,8 +226,10 @@ var updateOneCourse = function(req, res) {
 
       course.name = req.body.name;
       course.description = req.body.description;
-      course.lectures = req.body.lectures;
+      course.chapters = _splitArray(req.body.chapters);
       course.courseStandard = req.body.courseStandard;
+      course.imageURL = req.body.imageURL;
+      course.author = req.body.author;
 
       course
         .save(function(err, courseUpdated) {
