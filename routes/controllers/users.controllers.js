@@ -123,12 +123,13 @@ var addOneUser = function(req, res){
 	
 	User
 	    .create({
-	      name : req.body.name,
-	      email : req.body.email,
-        password : req.body.password,
-        coursesEnrolled : _splitArray(req.body.coursesEnrolled),
-        lecturesViewed : _splitArray(req.body.lecturesViewed),
-        currentStandard: req.body.currentStandard
+	      	name : req.body.name,
+	      	email : req.body.email,
+        	password : req.body.password,
+        	coursesEnrolled : _splitArray(req.body.coursesEnrolled),
+        	lecturesViewed : _splitArray(req.body.lecturesViewed),
+        	currentStandard : req.body.currentStandard,
+		school : req.body.school
 	    }, function(err, user) {
 		      if (err) {
 		        //console.log("Error creating user");
@@ -228,7 +229,7 @@ var updateOneUser = function(req, res) {
       user.coursesEnrolled = _splitArray(req.body.coursesEnrolled);
       user.lecturesViewed  = _splitArray(req.body.lecturesViewed);
       user.currentStandard = req.body.currentStandard;
-
+      user.school = req.body.school;
 
       user
         .save(function(err, userUpdated) {
