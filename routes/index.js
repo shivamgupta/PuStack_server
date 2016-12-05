@@ -4,5 +4,6 @@
 module.exports = function (app, router) {
   app.use('/api', require('./controllers/users.controllers.js')(router));
   app.use('/api', require('./controllers/courses.controllers.js')(router));
+  app.use('/api', require('./controllers/chapters.controllers.js')(router));
   app.use('/api', require('./controllers/lectures.controllers.js')(router));
 };
